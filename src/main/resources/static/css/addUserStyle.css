@@ -1,0 +1,74 @@
+.container-form {
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.info-user {
+    margin-bottom: 30px;
+}
+.info-user .main-header {
+    margin-bottom: 25px;
+}
+.content {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: #f1f1f1;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    font-size: 15px;
+}
+
+.input-name {
+    font-size: 18px;
+}
+
+.form-input:hover {
+    border-color: #87ceeb;
+}
+
+.form-input:focus {
+    background-color: #e3e1e1;
+    outline: none;
+    border-color: #87ceeb;
+}
+
+.btn-send {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn-send:hover {
+    opacity:1;
+}
+
+a {
+    color: dodgerblue;
+}
+
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+
+.pas-err{
+    font-size: 14px;
+    margin: 15px 0;
+    color: #ffffff;
+}

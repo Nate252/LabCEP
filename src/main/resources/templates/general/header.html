@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:fragment="header">
+    <nav class="menu">
+        <div class="menu-left">
+            <a th:href="@{/home}" class="logo">
+                <img th:src="@{/img/logo.png}" alt="Logo">
+                <span class="logo-text">CreateEstimatingPlan</span>
+            </a>
+        </div>
+        <div class="menu-center">
+            <a class="menu-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/showUsers}">Управління обліковими записами</a>
+            <a class="menu-item" th:href="@{/UploadFile}">Створення таблиці</a>
+            <a class="menu-item" th:href="@{/DownloadTemplateUk}" download>Завантажити шаблон UA</a>
+            <a class="menu-item" th:href="@{/DownloadTemplateEn}" download>Завантажити шаблон EN</a>
+        </div>
+        <div class="menu-right">
+            <form th:action="@{/logout}" method="post">
+                <button class="menu-item" type="submit" style="background:none; border:none; cursor:pointer;">Вийти</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<footer th:fragment="footer" class="footer">
+    <div class="footer-container">
+        <p>&copy; 2025 Create Estimating Plan. Усі права захищені.</p>
+        <p>Розроблено для автоматизації формування обліку ходу вивчення дисципліни</p>
+    </div>
+</footer>
+</html>

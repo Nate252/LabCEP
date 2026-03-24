@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список користувачів</title>
+    <link rel="stylesheet" th:href="@{/css/nuleStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
+    <link th:href="@{/css/showUsersStyle.css}" rel="stylesheet" />
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+</head>
+<header th:replace="~{general/header.html :: header}">
+</header>
+<body>
+<div class="page-wrapper">
+    <main class="container-content">
+<h1 class="main-header">Список користувачів</h1>
+<form method="get" th:action="@{/addUserShow}">
+    <button class="button-create">Створити користувача</button>
+</form>
+<div class="table">
+    <div class="cell header">Прізвище</div>
+    <div class="cell header">Ім'я</div>
+    <div class="cell header">По батькові</div>
+    <div class="cell header">Пошта</div>
+    <div class="cell header">Роль</div>
+<!--    <div class="cell header">Пароль</div>-->
+    <div class="cell header">Дії</div>
+</div>
+<div th:each="user: ${users}" class="table">
+    <div th:text="${user.surname}" class="cell"></div>
+    <div th:text="${user.name}" class="cell"></div>
+    <div th:text="${user.middleName}" class="cell"></div>
+    <div th:text="${user.email}" class="cell"></div>
+    <div class="cell"
+         th:text="${user.roles == 'ROLE_ADMIN' ? 'Адміністратор' :
+          (user.roles == 'ROLE_USER' ? 'Користувач' : user.roles)}">
+    </div>
+<!--    <div th:text="${user.password}" class="cell"></div>-->
+  <div class="cell">
+      <form th:action="@{/editUserShow/{id}(id=${user.id})}" method="get">
+          <button class="button-edit-pass" type="submit">Редагувати</button>
+      </form>
+      <form th:action="@{/deleteUser/{id}(id=${user.id})}"
+            onsubmit="return confirmDelete()" method="post">
+
+          <input type="hidden"
+                 th:name="${_csrf.parameterName}"
+                 th:value="${_csrf.token}" />
+
+          <button class="button_delete" type="submit">Видалити</button>
+      </form>
+      <form th:action="@{/changeUserPswShow/{id}(id=${user.id})}" method="get">
+          <button class="button_edit" type="submit">Змінити пароль</button>
+      </form>
+  </div>
+</div>
+        </main>
+    <footer th:replace="~{general/header.html :: footer}"></footer>
+    </div>
+
+<script>
+    function confirmDelete() {
+        return confirm("Ви впевнені, що хочете видалити цього користувача ?");
+    }
+</script>
+</body>
+</html>

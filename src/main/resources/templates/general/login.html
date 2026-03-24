@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/nuleStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+    <title>Вхід</title>
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-title">
+        <h2>Авторизація</h2>
+    </div>
+
+    <div th:if="${param.error}" class="error">
+        Неправильні ім'я користувача та пароль
+    </div>
+    <div th:if="${param.logout}" class="logout">
+        Ви вийшли з системи
+    </div>
+
+    <form th:action="@{/login}" method="post">
+
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}" />
+
+        <div class="form-row">
+            <input type="text" class="form-input" name="username" placeholder="Email адреса" required autocomplete="off">
+        </div>
+        <div class="form-row pass-wrap">
+            <input type="password" class="form-input password-input" name="password" placeholder="Ваш пароль" required autocomplete="off">
+            <span class="show-pass" onclick="togglePassword()"><i class="fas fa-eye"></i></span>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn-login" id="loginBtn"></button>
+            <label for="loginBtn">Увійти</label>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{js/script_password.js}"></script>
+</body>
+</html>

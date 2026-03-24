@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Створення ПВНД</title>
+    <link rel="stylesheet" th:href="@{/css/nuleStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+</head>
+<header th:replace="~{general/header.html :: header}">
+</header>
+<body>
+<div class="page-wrapper">
+    <main class="container-content">
+        <div class="content-text-info">
+            <section class="content-section">
+                <h1 class="main-header topic">Вітаємо у веб-сервісі CreateEstimatingPlan</h1>
+                <p class="info-text">Цей сервіс призначено для формування електронної таблиці для обліку ходу вивчення дисципліни.</p>
+                <p>Щоб створити таблицю, виконайте наступні кроки:</p>
+                <ol class="info-list">
+                    <li>Оберіть і завантажте шаблон у потрібній мові для створення плану вивчення дисципліни.</li>
+                    <li>Заповніть у шаблоні структуру оцінювання та вивчення.</li>
+                    <li>Перейдіть на сторінку “Створення таблиці” через меню.</li>
+                    <li>Завантажте заповнений шаблон і натисніть "Створити".</li>
+                    <li>Готово! Ви успішно сформували та завантажили файл обліку.</li>
+                </ol>
+            </section>
+        </div>
+    </main>
+    <footer th:replace="~{general/header.html :: footer}"></footer>
+</div>
+</body>
+</html>

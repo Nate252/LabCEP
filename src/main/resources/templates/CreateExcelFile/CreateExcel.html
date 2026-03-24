@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Створеня обліку</title>
+    <link rel="stylesheet" th:href="@{/css/nuleStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
+    <link th:href="@{/css/addUserStyle.css}" rel="stylesheet"/>
+    <link th:href="@{/css/createExcel.css}" rel="stylesheet"/>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let fileId = document.getElementById("fileId");
+            if (fileId && fileId.value) {
+                let downloadUrl = "/CreateEstimatingPlan/DownloadFile?fileId=" + encodeURIComponent(fileId.value);
+                let link = document.createElement("a");
+                link.href = downloadUrl;
+                link.style.display = "none";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                setTimeout(() => {
+                    window.location.href = "/CreateEstimatingPlan/home";
+                }, 3000);
+            }
+        });
+    </script>
+</head>
+
+<header th:replace="~{general/header.html :: header}">
+</header>
+
+<body>
+<div class="page-wrapper">
+    <main class="container-content">
+        <div class="container-form">
+
+<div th:if="${error}" class="error">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/UploadFile}" method="post" enctype="multipart/form-data">
+
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}" />
+
+    <div class="info-user">
+        <h1 class="main-header">Створення таблиці обліку</h1>
+        <p>Будь ласка, завантажте заповнений шаблон для створення обліку.</p>
+    </div>
+    <div class="content">
+    <label class="input-name" for="file-upl" >Перетащіть або Виберіть файл</label>
+    <input class="form-input file-input" type="file" name="file-upl" id="file-upl" accept=".xlsx, .xlsm" required>
+    </div>
+        <button class="btn-send" type="submit">Створити</button>
+</form>
+
+<input type="hidden" id="fileId" name="fileId" th:value="${fileId}" />
+        </div>
+    </main>
+    <footer th:replace="~{general/header.html :: footer}"></footer>
+</div>
+</body>
+</html>

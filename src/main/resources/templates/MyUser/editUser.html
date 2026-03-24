@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагування користувача</title>
+    <link rel="stylesheet" th:href="@{/css/nuleStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
+    <link th:href="@{/css/addUserStyle.css}" rel="stylesheet"/>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+</head>
+
+<header th:replace="~{general/header.html :: header}">
+</header>
+
+<body>
+<div class="page-wrapper">
+    <main class="container-content">
+        <div class="container-form">
+            <div th:if="${error}" class="error">
+                <p th:text="${error}"></p>
+            </div>
+            <form th:action="@{/editUser/{id}(id=${editUser.id})}" method="post"
+                  th:object="${editUser}">
+
+                <input type="hidden"
+                       th:name="${_csrf.parameterName}"
+                       th:value="${_csrf.token}" />
+
+                <div class="info-user">
+                    <h1 class="main-header">Редагування користувача</h1>
+                    <p>Будь ласка, змініть поля форми для редагування користувача.</p>
+                </div>
+                <div class="content">
+                    <label class="input-name" for="name"><b>Ім'я:</b></label>
+                    <input class="form-input" th:field="*{name}" type="text" placeholder="Введіть Ім'я" name="name"
+                           id="name"
+                           required
+                           pattern="^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ']{3,}$" title="Ім'я складається мінімально з 3 букв">
+
+                    <label class="input-name" for="surname"><b>Прізвище:</b></label>
+                    <input class="form-input" th:field="*{surname}" type="text" placeholder="Введіть Прізвище"
+                           name="surname"
+                           id="surname" required
+                           pattern="^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ']{2,}$">
+
+                    <label class="input-name" for="middleName"><b>По-батькові:</b></label>
+                    <input class="form-input" th:field="*{middleName}" type="text" placeholder="Введіть По-батькові"
+                           name="middleName" id="middleName" required
+                           pattern="^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ']{5,}$">
+
+                    <label class="input-name" for="email"><b>Введіть пошту:</b></label>
+                    <input class="form-input" th:field="*{email}" type="email" placeholder="Введіть пошту" name="email"
+                           id="email" required>
+
+                    <label class="input-name" for="role"><b>Роль</b></label>
+                    <select id="role" name="role" th:field="*{roles}" required>
+                        <option th:value="ROLE_ADMIN" th:text="АДМІНІСТРАТОР">
+                        </option>
+                        <option th:value="ROLE_USER" th:text="КОРИСТУВАЧ">
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-send">Редагувати</button>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="~{general/header.html :: footer}"></footer>
+</div>
+</body>
+</html>
